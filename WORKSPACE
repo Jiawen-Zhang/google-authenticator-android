@@ -72,6 +72,7 @@ maven_install(
         "org.hamcrest:java-hamcrest:2.0.0.0",
         "org.mockito:mockito-android:2.25.1",
         "org.mockito:mockito-core:2.25.1",
+        "net.zetetic:android-database-sqlcipher:4.4.2",
     ],
     repositories = [
         "https://maven.google.com",
