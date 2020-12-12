@@ -19,6 +19,12 @@ android_sdk_repository(
     # path = "/path/to/sdk",
 )
 
+android_ndk_repository(
+    name = "androidndk", # Required. Name *must* be "androidndk".
+    api_level = 29,
+    # path = "/path/to/ndk", # Optional. Can be omitted if `ANDROID_NDK_HOME` environment variable is set.
+)
+
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 # Load external Maven Rules

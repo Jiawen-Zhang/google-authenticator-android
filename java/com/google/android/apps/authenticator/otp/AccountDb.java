@@ -18,10 +18,14 @@ package com.google.android.apps.authenticator.otp;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.database.Cursor;
+/*import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteException;
+import android.database.sqlite.SQLiteException;*/
+import net.sqlcipher.DatabaseUtils;
+import net.sqlcipher.Cursor;
+import net.sqlcipher.database.SQLiteDatabase;
+import net.sqlcipher.database.SQLiteException;
 import android.util.Log;
 import com.google.android.apps.authenticator.otp.PasscodeGenerator.Signer;
 import com.google.android.apps.authenticator.util.Base32String;
@@ -209,6 +213,9 @@ public class AccountDb {
   }
 
   public AccountDb(Context context) {
+    //load SQLcipher database
+    //SQLiteDatabase.loadLibs(context);
+
     mDatabase = openDatabase(context);
 
     // Create the table if it doesn't exist
@@ -264,8 +271,9 @@ public class AccountDb {
   private SQLiteDatabase openDatabase(Context context) {
     for (int count = 0; true; count++) {
       try {
-        return context.openOrCreateDatabase(FileUtilities.DATABASES_PATH, Context.MODE_PRIVATE,
-            null);
+        /*return context.openOrCreateDatabase(FileUtilities.DATABASES_PATH, Context.MODE_PRIVATE,
+            null);*/
+        return SQLiteDatabase.openOrCreateDatabase(FileUtilities.DATABASES_PATH, "123", null);
       } catch (SQLiteException e) {
         if (count < 2) {
           continue;

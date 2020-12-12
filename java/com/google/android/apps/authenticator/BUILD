@@ -59,6 +59,7 @@ android_library(
         "@maven//:com_google_guava_guava",
         "@maven//:com_squareup_dagger_dagger",
         "@maven//:javax_inject_javax_inject",
+        "@maven//:net_zetetic_android_database_sqlcipher",
     ],
 )
 

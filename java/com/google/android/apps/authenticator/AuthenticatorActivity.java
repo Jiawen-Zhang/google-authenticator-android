@@ -101,6 +101,9 @@ import com.mobeta.android.dslv.DragSortController;
 import com.mobeta.android.dslv.DragSortItemView;
 import com.mobeta.android.dslv.DragSortListView.DragListener;
 import com.mobeta.android.dslv.DragSortListView.DropListener;
+
+import net.sqlcipher.database.SQLiteDatabase;
+
 import java.io.Serializable;
 import java.util.List;
 import javax.inject.Inject;
@@ -270,6 +273,9 @@ public class AuthenticatorActivity extends TestableActivity {
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+
+    //load SQLcipher database
+    //SQLiteDatabase.loadLibs(this);
 
     accountDb = DependencyInjector.getAccountDb();
     preferences = PreferenceManager.getDefaultSharedPreferences(this);
