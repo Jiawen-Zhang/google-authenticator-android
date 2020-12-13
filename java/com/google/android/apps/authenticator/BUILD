@@ -69,9 +69,9 @@ android_binary(
     name = "authenticator",
     custom_package = "com.google.android.apps.authenticator2",
     manifest = "AndroidManifest.xml",
-    proguard_specs = [
-        "proguard-rules.pro",
-    ],
+    #proguard_specs = [
+    #    "proguard-rules.pro",
+    #],
     resource_files = [
         ":res",
     ],

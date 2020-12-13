@@ -15,13 +15,13 @@
 # Set the path to your local SDK installation, or use the ANDROID_HOME environment variable.
 android_sdk_repository(
     name = "androidsdk",
-    api_level = 29,
+    api_level = 28,
     # path = "/path/to/sdk",
 )
 
 android_ndk_repository(
     name = "androidndk", # Required. Name *must* be "androidndk".
-    api_level = 29,
+    api_level = 28,
     # path = "/path/to/ndk", # Optional. Can be omitted if `ANDROID_NDK_HOME` environment variable is set.
 )
 
