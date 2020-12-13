@@ -59,7 +59,7 @@ public class AuthenticatorApplication extends MultiDexApplication {
     super.onCreate();
 
     //load SQLcipher database
-    //SQLiteDatabase.loadLibs(this);
+    SQLiteDatabase.loadLibs(this);
 
     PrngFixes.apply();
     // Try to restrict data dir file permissions to owner (this app's UID) only. This mitigates the

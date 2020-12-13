@@ -22,16 +22,16 @@ import android.content.Context;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;*/
-/*import net.sqlcipher.DatabaseUtils;
+import net.sqlcipher.DatabaseUtils;
 import net.sqlcipher.Cursor;
 import net.sqlcipher.database.SQLiteDatabase;
 import net.sqlcipher.database.SQLiteDatabaseHook;
-import net.sqlcipher.database.SQLiteException;*/
-import com.tencent.wcdb.Cursor;
+import net.sqlcipher.database.SQLiteException;
+/*import com.tencent.wcdb.Cursor;
 import com.tencent.wcdb.DatabaseUtils;
 import com.tencent.wcdb.database.SQLiteDatabase;
 import com.tencent.wcdb.database.SQLiteException;
-import com.tencent.wcdb.database.SQLiteOpenHelper;
+import com.tencent.wcdb.database.SQLiteOpenHelper;*/
 import android.util.Log;
 import com.google.android.apps.authenticator.otp.PasscodeGenerator.Signer;
 import com.google.android.apps.authenticator.util.Base32String;
@@ -283,12 +283,20 @@ public class AccountDb {
 
     for (int count = 0; true; count++) {
       try {
+        // Test Password
+        String password = "123";
+
         //return context.openOrCreateDatabase(FileUtilities.DATABASES_PATH, Context.MODE_PRIVATE,
         //    null);
-        //return SQLiteDatabase.openOrCreateDatabase(FileUtilities.DATABASES_PATH, "123", null);
-        String password = "123";
+
+        // SQLcipher
+        //return SQLiteDatabase.openOrCreateDatabase(FileUtilities.DATABASES_PATH, password, null);
+        return SQLiteDatabase.openOrCreateDatabase(context.getFilesDir().getPath()+FileUtilities.DATABASES_PATH, password, null);
+
         //return SQLiteDatabase.openOrCreateDatabase(FileUtilities.DATABASES_PATH, password.getBytes(), null, null);
-        return SQLiteDatabase.openOrCreateDatabase(context.getFilesDir().getPath()+FileUtilities.DATABASES_PATH, password.getBytes(), null, null);
+
+        // This method from WCDB
+        //return SQLiteDatabase.openOrCreateDatabase(context.getFilesDir().getPath()+FileUtilities.DATABASES_PATH, password.getBytes(), null, null);
       } catch (SQLiteException e) {
         if (count < 2) {
           continue;
