@@ -26,7 +26,8 @@ import java.io.IOException;
 public class FileUtilities {
 
   /** Path to databases */
-  public static final String DATABASES_PATH = "databases";
+  //public static final String DATABASES_PATH = "databases";
+  public static final String DATABASES_PATH = "/databases";
 
   /** Hidden constructor to prevent instantiation. */
   private FileUtilities() { }

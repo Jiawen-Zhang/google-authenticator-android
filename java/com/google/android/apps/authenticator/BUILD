@@ -72,6 +72,7 @@ android_binary(
     #proguard_specs = [
     #    "proguard-rules.pro",
     #],
+    multidex = "native",
     resource_files = [
         ":res",
     ],

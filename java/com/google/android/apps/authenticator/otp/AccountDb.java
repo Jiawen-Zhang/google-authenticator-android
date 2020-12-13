@@ -22,16 +22,16 @@ import android.content.Context;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;*/
-import net.sqlcipher.DatabaseUtils;
+/*import net.sqlcipher.DatabaseUtils;
 import net.sqlcipher.Cursor;
 import net.sqlcipher.database.SQLiteDatabase;
 import net.sqlcipher.database.SQLiteDatabaseHook;
-import net.sqlcipher.database.SQLiteException;
-/*import com.tencent.wcdb.Cursor;
+import net.sqlcipher.database.SQLiteException;*/
+import com.tencent.wcdb.Cursor;
 import com.tencent.wcdb.DatabaseUtils;
 import com.tencent.wcdb.database.SQLiteDatabase;
 import com.tencent.wcdb.database.SQLiteException;
-import com.tencent.wcdb.database.SQLiteOpenHelper;*/
+import com.tencent.wcdb.database.SQLiteOpenHelper;
 import android.util.Log;
 import com.google.android.apps.authenticator.otp.PasscodeGenerator.Signer;
 import com.google.android.apps.authenticator.util.Base32String;
@@ -220,7 +220,7 @@ public class AccountDb {
 
   public AccountDb(Context context) {
     //load SQLcipher database
-    SQLiteDatabase.loadLibs(context);
+    //SQLiteDatabase.loadLibs(context);
 
     mDatabase = openDatabase(context);
 
@@ -275,13 +275,20 @@ public class AccountDb {
    * Tries three times to open database before throwing AccountDbOpenException.
    */
   private SQLiteDatabase openDatabase(Context context) {
+
+    Log.e("PATH", context.getFilesDir().getPath());
+
+    //String password = "123";
+    //return SQLiteDatabase.openOrCreateDatabase(FileUtilities.DATABASES_PATH, password.getBytes(), null, null);
+
     for (int count = 0; true; count++) {
       try {
-        /*return context.openOrCreateDatabase(FileUtilities.DATABASES_PATH, Context.MODE_PRIVATE,
-            null);*/
-        return SQLiteDatabase.openOrCreateDatabase(FileUtilities.DATABASES_PATH, "123", null);
-        //String password = "123";
+        //return context.openOrCreateDatabase(FileUtilities.DATABASES_PATH, Context.MODE_PRIVATE,
+        //    null);
+        //return SQLiteDatabase.openOrCreateDatabase(FileUtilities.DATABASES_PATH, "123", null);
+        String password = "123";
         //return SQLiteDatabase.openOrCreateDatabase(FileUtilities.DATABASES_PATH, password.getBytes(), null, null);
+        return SQLiteDatabase.openOrCreateDatabase(context.getFilesDir().getPath()+FileUtilities.DATABASES_PATH, password.getBytes(), null, null);
       } catch (SQLiteException e) {
         if (count < 2) {
           continue;
@@ -345,7 +352,8 @@ public class AccountDb {
    */
   @VisibleForTesting
   public static boolean deleteDatabase(Context context) {
-    return context.deleteDatabase(FileUtilities.DATABASES_PATH);
+    //return context.deleteDatabase(FileUtilities.DATABASES_PATH);
+    return context.deleteDatabase(context.getFilesDir().getPath()+FileUtilities.DATABASES_PATH);
   }
 
   public boolean indexExists(AccountIndex index) {

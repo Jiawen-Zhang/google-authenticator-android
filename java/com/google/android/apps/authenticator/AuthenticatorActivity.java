@@ -275,7 +275,7 @@ public class AuthenticatorActivity extends TestableActivity {
     super.onCreate(savedInstanceState);
 
     //load SQLcipher database
-    SQLiteDatabase.loadLibs(this);
+    //SQLiteDatabase.loadLibs(this);
 
     accountDb = DependencyInjector.getAccountDb();
     preferences = PreferenceManager.getDefaultSharedPreferences(this);
