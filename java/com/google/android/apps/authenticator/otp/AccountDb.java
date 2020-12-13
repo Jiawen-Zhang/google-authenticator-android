@@ -25,7 +25,13 @@ import android.database.sqlite.SQLiteException;*/
 import net.sqlcipher.DatabaseUtils;
 import net.sqlcipher.Cursor;
 import net.sqlcipher.database.SQLiteDatabase;
+import net.sqlcipher.database.SQLiteDatabaseHook;
 import net.sqlcipher.database.SQLiteException;
+/*import com.tencent.wcdb.Cursor;
+import com.tencent.wcdb.DatabaseUtils;
+import com.tencent.wcdb.database.SQLiteDatabase;
+import com.tencent.wcdb.database.SQLiteException;
+import com.tencent.wcdb.database.SQLiteOpenHelper;*/
 import android.util.Log;
 import com.google.android.apps.authenticator.otp.PasscodeGenerator.Signer;
 import com.google.android.apps.authenticator.util.Base32String;
@@ -214,7 +220,7 @@ public class AccountDb {
 
   public AccountDb(Context context) {
     //load SQLcipher database
-    //SQLiteDatabase.loadLibs(context);
+    SQLiteDatabase.loadLibs(context);
 
     mDatabase = openDatabase(context);
 
@@ -274,6 +280,8 @@ public class AccountDb {
         /*return context.openOrCreateDatabase(FileUtilities.DATABASES_PATH, Context.MODE_PRIVATE,
             null);*/
         return SQLiteDatabase.openOrCreateDatabase(FileUtilities.DATABASES_PATH, "123", null);
+        //String password = "123";
+        //return SQLiteDatabase.openOrCreateDatabase(FileUtilities.DATABASES_PATH, password.getBytes(), null, null);
       } catch (SQLiteException e) {
         if (count < 2) {
           continue;

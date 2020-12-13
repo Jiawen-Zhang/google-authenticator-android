@@ -60,6 +60,7 @@ android_library(
         "@maven//:com_squareup_dagger_dagger",
         "@maven//:javax_inject_javax_inject",
         "@maven//:net_zetetic_android_database_sqlcipher",
+        "@maven//:com_tencent_wcdb_wcdb_android",
     ],
 )
 

@@ -25,6 +25,9 @@ import com.google.android.apps.authenticator.util.FileUtilities;
 import com.google.android.apps.authenticator.util.PrngFixes;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
+
+import net.sqlcipher.database.SQLiteDatabase;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.Callable;
@@ -34,10 +37,6 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.FutureTask;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
-import net.sqlcipher.DatabaseUtils;
-import net.sqlcipher.Cursor;
-import net.sqlcipher.database.SQLiteDatabase;
-import net.sqlcipher.database.SQLiteException;
 
 /**
  * Authenticator application which is one of the first things instantiated when our process starts.
@@ -60,7 +59,7 @@ public class AuthenticatorApplication extends MultiDexApplication {
     super.onCreate();
 
     //load SQLcipher database
-    //SQLiteDatabase.loadLibs(this);
+    SQLiteDatabase.loadLibs(this);
 
     PrngFixes.apply();
     // Try to restrict data dir file permissions to owner (this app's UID) only. This mitigates the
