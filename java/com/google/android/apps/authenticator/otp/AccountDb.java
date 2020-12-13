@@ -32,6 +32,7 @@ import com.tencent.wcdb.DatabaseUtils;
 import com.tencent.wcdb.database.SQLiteDatabase;
 import com.tencent.wcdb.database.SQLiteException;
 import com.tencent.wcdb.database.SQLiteOpenHelper;*/
+import android.provider.Settings;
 import android.util.Log;
 import com.google.android.apps.authenticator.otp.PasscodeGenerator.Signer;
 import com.google.android.apps.authenticator.util.Base32String;
@@ -276,15 +277,17 @@ public class AccountDb {
    */
   private SQLiteDatabase openDatabase(Context context) {
 
-    Log.e("PATH", context.getFilesDir().getPath());
+    //Log.e("PATH", context.getFilesDir().getPath());
 
+    String uniqueID = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
+
+    // Test Password
     //String password = "123";
     //return SQLiteDatabase.openOrCreateDatabase(FileUtilities.DATABASES_PATH, password.getBytes(), null, null);
 
     for (int count = 0; true; count++) {
       try {
-        // Test Password
-        String password = "123";
+        String password = uniqueID;
 
         //return context.openOrCreateDatabase(FileUtilities.DATABASES_PATH, Context.MODE_PRIVATE,
         //    null);
